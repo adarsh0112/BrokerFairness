@@ -1,10 +1,14 @@
 (This is too log the log of what work I did and when, and for how long)
 
-### Mar 24 5:30-7:30
+#### April 3 10:00- 
+* Set up env on windows
+* Added a new util package
+
+#### Mar 24 5:30-7:30
 * Finished working on the simple fairness algorithm
 * Fixed DatacenterBrokerFair broker breaking down with too many VMs
 
-### Mar 24 11:30AM-1:45PM
+#### Mar 24 11:30AM-1:45PM
 * Tried to debug and fix datacentrebrokerfair breaking down with many VMs (couldn't)
 * Generated Javadocs for the project
 * thought of ways to artificially check if datacenter bottlenecked

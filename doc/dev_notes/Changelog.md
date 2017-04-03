@@ -7,5 +7,6 @@
 	* Allots Vms in a round robin fashion
 
 # Changes to project source code
-*Got rid of test, test2.  Added Service, Utility, TestService and SimpleFairness classes
+* Got rid of test, test2.  Added Service, Utility, TestService and SimpleFairness classes
 * Added SimpleFairness Algo
+* Added a new util package

@@ -9,6 +9,8 @@ import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.core.CloudSim;
 
+import edu.bitsgoa.brokerfairness.util.Common;
+
 /**
  * This is the  verification service that sets up a meta cloud environment
  * and calls various fairness verification algorithms
@@ -40,10 +42,10 @@ public class Service {
 			int num_dc=5; //number of datacenters to create
 			int[] mips={86, 11, 2, 27, 1};
 			String[] names={"Google", "AWS", "Azure", "Box", "Dropbox"}; //mips of each datacenter
-			Datacenter[] dcs=Utility.createDc(num_dc, mips, names);
+			Datacenter[] dcs=Common.createDc(num_dc, mips, names);
 			
 			//Third step: Create Broker
-			DatacenterBroker broker = Utility.createBroker("fair"); //'fair' or 'default'
+			DatacenterBroker broker = Common.createBroker("fair"); //'fair' or 'default'
 			int brokerId = broker.getId();
 			
 			int num_vms=100; //num of vms to request		

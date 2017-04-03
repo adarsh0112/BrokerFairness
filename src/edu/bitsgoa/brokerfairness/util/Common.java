@@ -1,4 +1,4 @@
-package edu.bitsgoa.brokerfairness;
+package edu.bitsgoa.brokerfairness.util;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -24,7 +24,7 @@ import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple;
  * @author adarsh
  *
  */
-public class Utility {
+public class Common{
 	
 	/**
 	 * Creates list of VMs with given parameters and returns the list

@@ -5,6 +5,8 @@ import org.cloudbus.cloudsim.Datacenter;
 import org.cloudbus.cloudsim.DatacenterBroker;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.core.CloudSim;
+
+import edu.bitsgoa.brokerfairness.util.Common;
 /**
  * Class to call Simple Fairness Algorithm.
  * @author adarsh
@@ -25,12 +27,12 @@ public class SimpleFairness {
 	public static boolean simpleFairnessAlgo( int num_vms, int[] xi_ratio, Datacenter[] dcs,int brokerId,  DatacenterBroker broker)
 	{
 		boolean result=true; //assume strongly fair
-		List<Vm> vmlist=Utility.createVm(brokerId, num_vms);
+		List<Vm> vmlist=Common.createVm(brokerId, num_vms);
 		broker.submitVmList(vmlist);
 		CloudSim.startSimulation();
 		
-		xi_ratio=Utility.getXiRatio(dcs);
-		Utility.printXiRatio(dcs);
+		xi_ratio=Common.getXiRatio(dcs);
+		Common.printXiRatio(dcs);
 		
 		float fairShare=(float)num_vms/dcs.length;
 		for(int vi: xi_ratio)

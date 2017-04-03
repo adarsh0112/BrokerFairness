@@ -9,6 +9,8 @@ import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.core.CloudSim;
 
+import edu.bitsgoa.brokerfairness.util.Common;
+
 /**
  * created this to demo to Santonu Sir and Krishnan
  * @author ad
@@ -32,15 +34,15 @@ public class TestService {
 			int num_dc=2; //number of datacenters to create
 			int[] mips={1000, 500};
 			String[] names={"Google", "AWS"}; //mips of each datacenter
-			Datacenter[] dcs=Utility.createDc(num_dc, mips, names);
+			Datacenter[] dcs=Common.createDc(num_dc, mips, names);
 			
 			//Third step: Create Broker
-			DatacenterBroker broker = Utility.createBroker("fair"); //'fair' or 'default'
+			DatacenterBroker broker = Common.createBroker("fair"); //'fair' or 'default'
 			int brokerId = broker.getId();
 			
 			int num_vms=5;//num of vms to request
 			System.out.println("->Will request "+num_vms+" VM's.\n");
-			vmlist=Utility.createVm(brokerId, num_vms); 
+			vmlist=Common.createVm(brokerId, num_vms); 
 
 			//submit vm list to the broker
 			broker.submitVmList(vmlist);
@@ -48,7 +50,7 @@ public class TestService {
 			CloudSim.startSimulation();
 
 			//print results
-			Utility.printXiRatio(dcs);
+			Common.printXiRatio(dcs);
 
         	//stop simulation
 			CloudSim.stopSimulation();
