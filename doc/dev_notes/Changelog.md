@@ -10,3 +10,5 @@
 * Got rid of test, test2.  Added Service, Utility, TestService and SimpleFairness classes
 * Added SimpleFairness Algo
 * Added a new util package
+* created AuditService and Simulator
+* created config.properties file and a Config class to read from that

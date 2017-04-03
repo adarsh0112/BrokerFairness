@@ -1,8 +1,12 @@
 (This is too log the log of what work I did and when, and for how long)
 
-#### April 3 10:00- 
+#### April 3 7:00-8:30PM
+* Set up classes to read from a config file
+
+#### April 3 10:00am- 12:45pm
 * Set up env on windows
 * Added a new util package
+* created AuditService and Simulator
 
 #### Mar 24 5:30-7:30
 * Finished working on the simple fairness algorithm

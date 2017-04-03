@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package edu.bitsgoa.brokerfairness;
 
 import java.util.Calendar;
@@ -10,15 +13,14 @@ import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.core.CloudSim;
 
 import edu.bitsgoa.brokerfairness.util.Common;
-
+import edu.bitsgoa.brokerfairness.util.Config;
 /**
- * This is the  verification service that sets up a meta cloud environment
- * and calls various fairness verification algorithms
- * @author adarsh
+ * The Simulator class that sets uup the cloud env
+ * @author Adarsh Srivastava
  *
  */
-public class Service {
-	
+public class Simulator {
+
 	@SuppressWarnings("unused")
 	private static List<Vm> vmlist;
 	
@@ -31,7 +33,7 @@ public class Service {
 	{
 		try {
 			
-			int num_user = 1;   // number of cloud users
+			int num_user = Integer.parseInt(Config.getValue("num_user"));   // number of cloud users
 			Calendar calendar = Calendar.getInstance();
 			boolean trace_flag = false;  // mean trace events
 
@@ -39,30 +41,24 @@ public class Service {
 			CloudSim.init(num_user, calendar, trace_flag);
 
 			// Second step: Create Datacenters
-			int num_dc=5; //number of datacenters to create
-			int[] mips={86, 11, 2, 27, 1};
-			String[] names={"Google", "AWS", "Azure", "Box", "Dropbox"}; //mips of each datacenter
+			int num_dc=Integer.parseInt(Config.getValue("num_dc")); //number of datacenters to create
+			int[] mips= Config.getMips();	//mips of respective datacenters
+			String[] names=Config.getValue("names").split(","); //names of each datacenter
 			Datacenter[] dcs=Common.createDc(num_dc, mips, names);
 			
 			//Third step: Create Broker
-			DatacenterBroker broker = Common.createBroker("fair"); //'fair' or 'default'
-			int brokerId = broker.getId();
+			String broker_type=Config.getValue("broker_type");
+			DatacenterBroker broker = Common.createBroker(broker_type); //'fair' or 'default'
 			
-			int num_vms=100; //num of vms to request		
-			int xi_ratio[]=new int[num_vms];
+			AuditService.audit(dcs, broker); //call the auditing Service
 			
-			boolean isFair=SimpleFairness.simpleFairnessAlgo(num_vms, xi_ratio, dcs, brokerId, broker );
-			System.out.println("->'Broker is fair'? = "+isFair+".");
-
-        	//stop simulation
+			
+			//stop simulation
 			CloudSim.stopSimulation();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 			Log.printLine("The simulation has been terminated due to an unexpected error");
 		}
-		// TODO Auto-generated method stub
-
 	}
-
 }
